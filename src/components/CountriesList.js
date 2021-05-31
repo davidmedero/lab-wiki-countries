@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import CountryDetails from './CountryDetails';
 import { Link } from 'react-router-dom';
-// import countries from "../countries.json";
 import axios from 'axios';
-
-// console.log(axios, countries)
 
 function CountriesList(props) {
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    //Happens on mount
-    console.log('countries list mounted');
-
     axios.get(`https://restcountries.eu/rest/v2/all`).then((response) => {
       console.log(response.data);
       setCountries(response.data);
     });
 
     return () => console.log('component unmounted');
-  }, []); //Square bracket is to remount when the data inside changes
+  }, []);
 
   const newCon = () => {
     return countries.map((country, i) => {
